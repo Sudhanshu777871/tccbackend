@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const config = require("./config");
 require("dotenv").config();
 // applying the middleware
 app.use(express.json());
 app.use(cors());
-
+const mysql = require('mysql2');
+const config = mysql.createConnection(process.env.DATABASE_URL);
 // CREATING THE LOGIN API #
 app.post("/login", (req, res) => {
   if (req.body.admin_Id && req.body.Password) {
